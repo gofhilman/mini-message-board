@@ -121,7 +121,7 @@ form > button {
 .message {
   padding: 10px 5px 15px;
   display: grid;
-  grid-template-columns: max-content auto;
+  grid-template-columns: max-content 1fr;
   gap: 7px 20px;
 }
 
