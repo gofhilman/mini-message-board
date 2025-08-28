@@ -14,4 +14,13 @@ async function getForm(_, res) {
   res.render("main-layout", { page: "form", title: "New message" });
 }
 
-module.exports = { getMessages };
+async function postForm(req, res) {
+  messages.push({
+    text: req.body.message,
+    user: req.body.author,
+    added: new Date(),
+  });
+  res.redirect("/");
+}
+
+module.exports = { getMessages, getForm, postForm };
