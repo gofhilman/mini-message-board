@@ -16,6 +16,7 @@ async function getForm(_, res) {
 
 async function postForm(req, res) {
   messages.push({
+    id: crypto.randomUUID(),
     text: req.body.message,
     user: req.body.author,
     added: new Date(),
@@ -23,4 +24,14 @@ async function postForm(req, res) {
   res.redirect("/");
 }
 
-module.exports = { getMessages, getForm, postForm };
+async function getDetails(req, res) {
+  const message = messages.find((item) => item.id === req.params.messageId);
+  res.render("main-layout", {
+    formatTime,
+    message,
+    page: "message",
+    title: "Message details",
+  });
+}
+
+module.exports = { getMessages, getForm, postForm, getDetails };

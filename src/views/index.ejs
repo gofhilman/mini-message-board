@@ -9,6 +9,7 @@
         <%= formatTime(message.added)[0].toUpperCase() +
         formatTime(message.added).slice(1) %>
       </p>
+      <a href=<%= "/message/" + message.id %> ><button>Details</button></a>
     </article>
     <% }); %>
   </div>
