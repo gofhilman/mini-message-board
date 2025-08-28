@@ -17,10 +17,7 @@ app.use((err, _, res, __) => {
 });
 
 const PORT = process.env.PORT || 3000;
-app
-  .listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-  })
-  .on("error", (err) => {
-    console.error(`Failed to start server on port ${PORT}:`, err);
-  });
+app.listen(PORT, (error) => {
+  if (error) throw error;
+  console.log(`Server running on port ${PORT}`);
+});
