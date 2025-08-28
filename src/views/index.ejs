@@ -1,0 +1,15 @@
+<article>
+  <h2>Mini Message Board</h2>
+  <div>
+    <% messages.forEach((message) => { %>
+    <article>
+      <p><%= message.user %></p>
+      <p><%= message.text %></p>
+      <p>
+        <%= formatTime(message.added)[0].toUpperCase() +
+        formatTime(message.added).slice(1) %>
+      </p>
+    </article>
+    <% }); %>
+  </div>
+</article>
