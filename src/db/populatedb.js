@@ -1,4 +1,4 @@
-require("dotenv").config();
+const { argv } = require("node:process");
 const { Client } = require("pg");
 
 const now = new Date().toISOString();
@@ -21,7 +21,7 @@ VALUES ('Hi there!', 'Amando', '${now}'),
 async function main() {
   console.log("seeding...");
   const client = new Client({
-    connectionString: process.env.DATABASE_URL,
+    connectionString: argv[2],
   });
   await client.connect();
   await client.query(SQL);
