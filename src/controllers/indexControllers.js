@@ -1,7 +1,8 @@
-const { messages } = require("../db");
+const db = require("../db/queries");
 const formatTime = require("../utils/format-time");
 
 async function getMessages(_, res) {
+  const messages = await db.getAllMessages();
   res.render("main-layout", {
     formatTime,
     messages,
@@ -15,17 +16,16 @@ async function getForm(_, res) {
 }
 
 async function postForm(req, res) {
-  messages.push({
-    id: crypto.randomUUID(),
+  await db.insertMessage({
     text: req.body.message,
     user: req.body.author,
-    added: new Date(),
+    added: new Date().toISOString(),
   });
   res.redirect("/");
 }
 
 async function getDetails(req, res) {
-  const message = messages.find((item) => item.id === req.params.messageId);
+  const message = await db.getMessage(req.params.messageId);
   res.render("main-layout", {
     formatTime,
     message,
